@@ -1,0 +1,18 @@
+#include<iostream>
+#include<string>
+
+bool isUnique(const std::string& str) // this function returns "true" if a string has all unique characters
+{
+	bool* data = new bool[str.size()]{};   // creating a bool type array for all characters from the str 
+	for (auto it : str)            // using a for loop to iterate through each character in given string 
+	{
+        if (data[it - 1])       // setting "true" for every character we meet so in case the if condition is "true"
+        {
+            delete[] data;      //don't forget to call the delete[] operator for the array to avoid memory leak;)
+            return false;       // we gonna return "false" as that character isn't unique 
+        }
+        data[it - 1] = true;
+	}
+    delete[] data;       //don't forget to call the delete[] operator for data before leaving;) 
+    return true;         // return "true" as all characters are unique
+}
