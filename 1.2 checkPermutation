@@ -1,0 +1,30 @@
+void reverseString(std::string& str)  //function reversing the given string 
+{
+    for (int begin{}, end = str.size() - 1; begin != end; ++begin, --end) //swapping all characters in string
+    {
+        char tmp = str[begin];
+        str[begin] = str[end];
+        str[end] = tmp;
+    }
+}
+
+bool otherPermutationCheck(std::string first, std::string second)
+{
+    if (first.size() != second.size()) { return false; }
+    reverseString(first);
+    return (first == second)? true:false;  //if the reversed string is the same with second given string returns true as they are permuted
+}
+
+bool permutationCheck(const std::string& first, const std::string& second)
+{
+    if (first.size() != second.size()) { return false; } //strings aren't permutations of each other if their size isn't the same
+    int size = first.size();  //initializing size variable to avoid invoking size() method every time in for loop
+    for (int start{}, end = first.size() - 1; start < size; ++start, --end)  //checking each
+    {
+        if (first[start] != second[end])
+        {
+            return false;
+        }
+    }
+    return true;
+}
