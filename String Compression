@@ -1,0 +1,27 @@
+std::string stringCompression(std::string str)
+{
+    if(!str.size()) { return str; }  //return the string if there are no characters
+    
+    int count=1; //assign count of characters 1 for the first character
+    int size = str.size(); 
+    std::string newstr{};
+    int j{}, i = 1;   //iterator j points to the first character while iterator i counts how many of the first characters are there
+    for (; i < size; ++i)
+    {
+        if (str[j] != str[i])
+        {
+            newstr += str[j];
+            newstr += std::to_string(count);
+            count = 0;   //start counting again
+            j = i; //now j points to the next character
+        }
+        ++count;
+    }
+    if (count != 0) //we need to check how many of the last character ate there at the end of given string, also could use if(i != j) as a condition check
+    {
+        newstr += str[j];
+        newstr += std::to_string(count);
+    }
+
+    return (size == newstr.size()) ? str : newstr; // this task requests "If the "compressed" string would not become smaller than the original string, your method should return the original string".
+}
