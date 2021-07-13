@@ -1,0 +1,30 @@
+void zeroMatrix(std::vector<std::vector<int>>& vec)      
+{
+    std::vector<std::pair<int,int>> v{};  // using stl std::pair container to keep the coordinates of the 0 value elements 
+    int row = vec.size();
+    int column = vec[0].size();
+    std::cout << row << " row/column " << column<<std::endl;
+    for (int i{}; i < row; ++i)
+    {
+        for (int j{}; j < column; ++j)
+        {
+            if (vec[i][j] == 0)
+            {
+                v.push_back(std::make_pair(i,j));   //keeping the coordinates in v vector 
+            }
+        }
+    }
+    
+    for (int i{}; i < v.size(); ++i)    //the loop to go through all coordinates with 0 value
+    {
+        for (int a{}; a < column; ++a)
+        {
+            vec[v[i].first][a] = 0;     //setting whole row with 0 value
+        }
+        
+        for (int a{}; a < row; ++a)
+        {
+            vec[a][v[i].second] = 0;   //setting whole column with 0 value
+        }
+    }  
+}
