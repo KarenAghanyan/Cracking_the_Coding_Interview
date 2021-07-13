@@ -1,0 +1,43 @@
+bool oneWay(std::string first, std::string second) //function returns "false" if there are more than one differences in given strings 
+{
+    if (first == second) { return true; } //returns "true" if the strings are same
+    if ((first.size() - 2) >= second.size() or first.size() <= (second.size() - 2)) { return false; } //returns false if size of first string +-1 of second one
+
+    int edit{};            //count variable for edits made
+    if (first.size() == second.size()) // if the strings have the same length there must be just one different character otherwise if statement returns "false"
+    {
+        for (int i{}; i < first.size(); ++i)
+        {
+            if (first[i] != second[i]) { ++edit; }
+        }
+        return (edit <= 1) ? true : false;
+    }
+
+    if (first.size() == (second.size() - 1))   
+    {
+        for (int f{}, s{}; f < first.size() && s<second.size() ; ++f,++s)
+        {
+            if (first[f] != second[s]) //holds the index of smaller string to check if the next character of longer string the same with it 
+            {
+                ++edit;
+                --f;
+            }
+        }
+        return (edit <= 1) ? true : false;
+    }
+
+    if (first.size() == (second.size() + 1))
+    {
+        for (int f{}, s{}; f < first.size() && s < second.size(); ++f, ++s)
+        {
+            if (first[f] != second[s])  //holds the index of smaller string to check if the next character of longer string the same with it
+            {
+                ++edit;
+                --s;
+            }
+        }
+        return (edit <= 1) ? true : false;
+    }
+
+    return false; //my compilator "warned" me to add this return operator:))
+}
