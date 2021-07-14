@@ -3,7 +3,7 @@ void zeroMatrix(std::vector<std::vector<int>>& vec)
     std::vector<std::pair<int,int>> v{};  // using stl std::pair container to keep the coordinates of the 0 value elements 
     int row = vec.size();
     int column = vec[0].size();
-    std::cout << row << " row/column " << column<<std::endl;
+
     for (int i{}; i < row; ++i)
     {
         for (int j{}; j < column; ++j)
