@@ -1,0 +1,33 @@
+void swap(int& a, int& b, int& c, int& d) //swap function witch gets four parameters 
+    {
+        int tmp = d;
+        d = c;
+        c = b;
+        b = a;
+        a = tmp;
+    }
+    
+    void rotate(vector<vector<int>>& matrix) {  
+        if (matrix.size() == 1) { return; }   // if the given matrix contains only one member, function doesn't make any changes
+        int size = matrix.size();   // assigning size of the square matrix
+        int loop = size - 1;  // assigns loop variable with size - 1 as   
+        int halfsize = size / 2;
+
+        for (int count{}, i{}, j{}; count < halfsize;)
+        {
+            for (; i < size-1; ++i)
+            {
+                for (; j < size-1; ++j)
+                {
+                    swap(matrix[i][j],
+                        matrix[j][loop - i],
+                        matrix[loop - i][loop - j],
+                        matrix[loop - j][i]);
+                }
+            }
+            ++count;
+            i=count;
+            j=count;
+            --size;
+        }
+    }
